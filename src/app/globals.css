@@ -1,26 +1,893 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-attachment: fixed;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ULTRA ENHANCED CINEMATIC ANIMATIONS */
+
+/* Basic animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* STAGE 1: Anticipation - Building tension */
+@keyframes envelope-anticipation {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.02) rotate(0.5deg);
+  }
+  50% {
+    transform: scale(1.04) rotate(-0.5deg);
+  }
+  75% {
+    transform: scale(1.02) rotate(0.3deg);
+  }
+  100% {
+    transform: scale(1.05) rotate(0deg);
+  }
+}
+
+/* STAGE 2: Dramatic shake with intensity */
+@keyframes envelope-dramatic-shake {
+  0%,
+  100% {
+    transform: scale(1.05) translateX(0) translateY(0) rotate(0deg);
+  }
+  10% {
+    transform: scale(1.06) translateX(-4px) translateY(-2px) rotate(-1deg);
+  }
+  20% {
+    transform: scale(1.07) translateX(4px) translateY(2px) rotate(1deg);
+  }
+  30% {
+    transform: scale(1.06) translateX(-3px) translateY(-3px) rotate(-0.5deg);
+  }
+  40% {
+    transform: scale(1.08) translateX(3px) translateY(3px) rotate(0.5deg);
+  }
+  50% {
+    transform: scale(1.07) translateX(-2px) translateY(-1px) rotate(-0.8deg);
+  }
+  60% {
+    transform: scale(1.09) translateX(2px) translateY(1px) rotate(0.8deg);
+  }
+  70% {
+    transform: scale(1.08) translateX(-1px) translateY(-2px) rotate(-0.3deg);
+  }
+  80% {
+    transform: scale(1.1) translateX(1px) translateY(2px) rotate(0.3deg);
+  }
+  90% {
+    transform: scale(1.09) translateX(-0.5px) translateY(-0.5px) rotate(-0.1deg);
+  }
+}
+
+/* STAGE 3: Envelope lifting with 3D perspective */
+@keyframes envelope-lift {
+  0% {
+    transform: scale(1.1) rotateX(0deg) rotateY(0deg) translateZ(0px);
+  }
+  50% {
+    transform: scale(1.15) rotateX(5deg) rotateY(2deg) translateZ(20px);
+  }
+  100% {
+    transform: scale(1.2) rotateX(10deg) rotateY(0deg) translateZ(40px);
+  }
+}
+
+/* STAGE 4: Envelope expansion */
+@keyframes envelope-expand {
+  0% {
+    transform: scale(1.2) rotateX(10deg) translateZ(40px);
+  }
+  50% {
+    transform: scale(1.3) rotateX(15deg) translateZ(60px);
+  }
+  100% {
+    transform: scale(1.4) rotateX(20deg) translateZ(80px);
+  }
+}
+
+/* STAGE 5: Envelope transformation */
+@keyframes envelope-transform {
+  0% {
+    transform: scale(1.4) rotateX(20deg) translateZ(80px);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.6) rotateX(30deg) translateZ(100px);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2) rotateX(45deg) translateZ(120px);
+    opacity: 0;
+  }
+}
+
+/* Enhanced Flap Animations */
+@keyframes flap-dramatic-open {
+  0% {
+    transform: rotateX(0deg) translateY(0px) translateZ(0px);
+    transform-origin: bottom;
+  }
+  20% {
+    transform: rotateX(-30deg) translateY(2px) translateZ(10px);
+    transform-origin: bottom;
+  }
+  40% {
+    transform: rotateX(-60deg) translateY(4px) translateZ(20px);
+    transform-origin: bottom;
+  }
+  60% {
+    transform: rotateX(-90deg) translateY(6px) translateZ(30px);
+    transform-origin: bottom;
+  }
+  80% {
+    transform: rotateX(-150deg) translateY(8px) translateZ(40px);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: rotateX(-180deg) translateY(10px) translateZ(50px);
+    transform-origin: bottom;
+  }
+}
+
+@keyframes flap-fully-open {
+  0% {
+    transform: rotateX(-180deg) translateY(10px) translateZ(50px);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: rotateX(-200deg) translateY(15px) translateZ(60px);
+    transform-origin: bottom;
+  }
+}
+
+@keyframes flap-fade-away {
+  0% {
+    transform: rotateX(-200deg) translateY(15px) translateZ(60px);
+    opacity: 1;
+  }
+  100% {
+    transform: rotateX(-220deg) translateY(20px) translateZ(80px);
+    opacity: 0;
+  }
+}
+
+/* Ultra Enhanced Seal Animations */
+@keyframes seal-dramatic-crack {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  10% {
+    transform: scale(1.05) rotate(2deg);
+  }
+  20% {
+    transform: scale(1.1) rotate(-2deg);
+  }
+  30% {
+    transform: scale(1.08) rotate(3deg);
+  }
+  40% {
+    transform: scale(1.12) rotate(-3deg);
+  }
+  50% {
+    transform: scale(1.15) rotate(4deg);
+  }
+  60% {
+    transform: scale(1.1) rotate(-4deg);
+  }
+  70% {
+    transform: scale(1.13) rotate(2deg);
+  }
+  80% {
+    transform: scale(1.08) rotate(-1deg);
+  }
+  90% {
+    transform: scale(1.1) rotate(1deg);
+  }
+  100% {
+    transform: scale(1.05) rotate(0deg);
+  }
+}
+
+@keyframes seal-explosive-break {
+  0% {
+    transform: scale(1.05) rotate(0deg);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(1.3) rotate(15deg);
+    opacity: 0.9;
+  }
+  40% {
+    transform: scale(1.6) rotate(35deg);
+    opacity: 0.7;
+  }
+  60% {
+    transform: scale(1.2) rotate(60deg);
+    opacity: 0.4;
+  }
+  80% {
+    transform: scale(0.8) rotate(90deg);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(0) rotate(120deg);
+    opacity: 0;
+  }
+}
+
+/* Cascading crack lines */
+@keyframes crack-cascade {
+  0% {
+    opacity: 0;
+    transform: scaleX(0) scaleY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1) scaleY(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1) scaleY(1);
+  }
+}
+
+/* Seal particle explosion */
+@keyframes seal-particle-explosion {
+  0% {
+    opacity: 1;
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.5) translate(var(--random-x, 20px), var(--random-y, -20px));
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0) translate(var(--random-x, 40px), var(--random-y, -40px));
+  }
+}
+
+/* Ultra Enhanced Letter Animations */
+@keyframes letter-peek-out {
+  0% {
+    transform: translateY(32px) scale(0.9) rotateX(45deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(20px) scale(0.95) rotateX(30deg);
+    opacity: 0.7;
+  }
+}
+
+@keyframes letter-dramatic-emerge {
+  0% {
+    transform: translateY(20px) scale(0.95) rotateX(30deg);
+    opacity: 0.7;
+  }
+  25% {
+    transform: translateY(10px) scale(0.98) rotateX(20deg);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateY(0px) scale(1) rotateX(10deg);
+    opacity: 0.95;
+  }
+  75% {
+    transform: translateY(-5px) scale(1.02) rotateX(5deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0px) scale(1) rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes letter-magical-unfold {
+  0% {
+    transform: scale(1) rotateX(0deg) rotateY(0deg) translateZ(0px);
+    opacity: 1;
+  }
+  25% {
+    transform: scale(1.1) rotateX(10deg) rotateY(5deg) translateZ(20px);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.3) rotateX(20deg) rotateY(10deg) translateZ(40px);
+    opacity: 0.7;
+  }
+  75% {
+    transform: scale(1.6) rotateX(30deg) rotateY(15deg) translateZ(60px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2) rotateX(45deg) rotateY(20deg) translateZ(80px);
+    opacity: 0;
+  }
+}
+
+/* Heart bloom effect */
+@keyframes heart-bloom {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  75% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Text line appear effect */
+@keyframes text-line-appear {
+  0% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+/* Letter glow sweep */
+@keyframes letter-glow-sweep {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Enhanced Modal Animations */
+@keyframes modal-cinematic-appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(100px) rotateX(30deg) rotateY(10deg);
+  }
+  25% {
+    opacity: 0.3;
+    transform: scale(0.7) translateY(60px) rotateX(20deg) rotateY(5deg);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.9) translateY(30px) rotateX(10deg) rotateY(2deg);
+  }
+  75% {
+    opacity: 0.9;
+    transform: scale(1.05) translateY(10px) rotateX(2deg) rotateY(0deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0px) rotateX(0deg) rotateY(0deg);
+  }
+}
+
+@keyframes letter-content-reveal {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.1) rotateX(90deg);
+  }
+  25% {
+    opacity: 0.3;
+    transform: scaleY(0.3) rotateX(60deg);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scaleY(0.6) rotateX(30deg);
+  }
+  75% {
+    opacity: 0.9;
+    transform: scaleY(0.9) rotateX(10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1) rotateX(0deg);
+  }
+}
+
+/* Enhanced Particle Effects */
+@keyframes sparkle-physics {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg) translateY(0px);
+  }
+  25% {
+    opacity: 1;
+    transform: scale(0.5) rotate(90deg) translateY(-10px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg) translateY(-20px);
+  }
+  75% {
+    opacity: 0.7;
+    transform: scale(1.2) rotate(270deg) translateY(-30px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(360deg) translateY(-40px);
+  }
+}
+
+@keyframes magical-particles {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateY(0px) rotate(0deg);
+  }
+  25% {
+    opacity: 1;
+    transform: scale(1) translateY(-20px) rotate(90deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5) translateY(-40px) rotate(180deg);
+  }
+  75% {
+    opacity: 0.7;
+    transform: scale(1.2) translateY(-60px) rotate(270deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0) translateY(-80px) rotate(360deg);
+  }
+}
+
+/* Energy wave effects */
+@keyframes energy-wave {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Enhanced Glow Effects */
+@keyframes border-pulse {
+  0%,
+  100% {
+    border-color: rgba(219, 39, 119, 0.4);
+    box-shadow: 0 0 5px rgba(219, 39, 119, 0.3);
+  }
+  50% {
+    border-color: rgba(219, 39, 119, 0.8);
+    box-shadow: 0 0 20px rgba(219, 39, 119, 0.6);
+  }
+}
+
+@keyframes text-glow {
+  0%,
+  100% {
+    text-shadow: 0 0 5px rgba(219, 39, 119, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(219, 39, 119, 0.6), 0 0 25px rgba(219, 39, 119, 0.4);
+  }
+}
+
+@keyframes text-magical-glow {
+  0%,
+  100% {
+    text-shadow: 0 0 10px rgba(219, 39, 119, 0.5);
+    color: rgb(219, 39, 119);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(219, 39, 119, 0.8), 0 0 30px rgba(219, 39, 119, 0.6);
+    color: rgb(236, 72, 153);
+  }
+}
+
+@keyframes magical-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Promise Ring Animations */
+@keyframes sparkle-ring {
+  0%,
+  100% {
+    transform: rotate(45deg) scale(1);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    transform: rotate(45deg) scale(1.1);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.6);
+  }
+}
+
+@keyframes ring-sparkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes ring-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(251, 191, 36, 0.8), 0 0 60px rgba(251, 191, 36, 0.6);
+  }
+}
+
+/* Animation Classes */
+.animate-fade-in {
+  animation: fade-in 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-envelope-anticipation {
+  animation: envelope-anticipation 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-envelope-dramatic-shake {
+  animation: envelope-dramatic-shake 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.animate-envelope-lift {
+  animation: envelope-lift 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-envelope-expand {
+  animation: envelope-expand 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-envelope-transform {
+  animation: envelope-transform 0.8s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+}
+
+.animate-flap-dramatic-open {
+  animation: flap-dramatic-open 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-flap-fully-open {
+  animation: flap-fully-open 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-flap-fade-away {
+  animation: flap-fade-away 0.8s cubic-bezier(0.55, 0.06, 0.68, 0.19) forwards;
+}
+
+.animate-seal-dramatic-crack {
+  animation: seal-dramatic-crack 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.animate-seal-explosive-break {
+  animation: seal-explosive-break 1.2s cubic-bezier(0.55, 0.06, 0.68, 0.19) forwards;
+}
+
+.animate-crack-cascade {
+  animation: crack-cascade 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-seal-particle-explosion {
+  animation: seal-particle-explosion 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-letter-peek-out {
+  animation: letter-peek-out 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-letter-dramatic-emerge {
+  animation: letter-dramatic-emerge 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-letter-magical-unfold {
+  animation: letter-magical-unfold 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-heart-bloom {
+  animation: heart-bloom 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.animate-text-line-appear {
+  animation: text-line-appear 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-letter-glow-sweep {
+  animation: letter-glow-sweep 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-modal-cinematic-appear {
+  animation: modal-cinematic-appear 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-letter-content-reveal {
+  animation: letter-content-reveal 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-sparkle-physics {
+  animation: sparkle-physics 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.animate-magical-particles {
+  animation: magical-particles 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-energy-wave {
+  animation: energy-wave 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+.animate-border-pulse {
+  animation: border-pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-text-glow {
+  animation: text-glow 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-text-magical-glow {
+  animation: text-magical-glow 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-magical-sweep {
+  animation: magical-sweep 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+.animate-sparkle-ring {
+  animation: sparkle-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-ring-sparkle {
+  animation: ring-sparkle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-ring-glow {
+  animation: ring-glow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* 3D Perspective Enhanced */
+.perspective-2000 {
+  perspective: 2000px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Ultra Enhanced Glow Effects */
+.envelope-glow {
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.3), 0 0 40px rgba(236, 72, 153, 0.2), 0 0 60px rgba(236, 72, 153, 0.1), 0
+    10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.envelope-glow-anticipation {
+  box-shadow: 0 0 30px rgba(236, 72, 153, 0.4), 0 0 60px rgba(236, 72, 153, 0.3), 0 0 90px rgba(236, 72, 153, 0.2), 0
+    15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.envelope-glow-intense {
+  box-shadow: 0 0 40px rgba(236, 72, 153, 0.6), 0 0 80px rgba(236, 72, 153, 0.5), 0 0 120px rgba(236, 72, 153, 0.4), 0 0
+    160px rgba(236, 72, 153, 0.3), 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.envelope-glow-magical {
+  box-shadow:
+    0 0 50px rgba(236, 72, 153, 0.8), 0 0 100px rgba(236, 72, 153, 0.7), 0 0 150px rgba(236, 72, 153, 0.6), 0 0
+    200px rgba(236, 72, 153, 0.5), 0 0 250px rgba(236, 72, 153, 0.4), 0 25px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fce7f3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ec4899;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #db2777;
+}
+
+/* Cream colors */
+.bg-cream-50 {
+  background-color: #fefce8;
+}
+
+.bg-cream-100 {
+  background-color: #fef3c7;
+}
+
+/* Smooth transitions for all elements except animations */
+* {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Override transitions for specific animations */
+.animate-envelope-anticipation,
+.animate-envelope-dramatic-shake,
+.animate-envelope-lift,
+.animate-envelope-expand,
+.animate-envelope-transform,
+.animate-flap-dramatic-open,
+.animate-flap-fully-open,
+.animate-flap-fade-away,
+.animate-seal-dramatic-crack,
+.animate-seal-explosive-break,
+.animate-letter-peek-out,
+.animate-letter-dramatic-emerge,
+.animate-letter-magical-unfold,
+.animate-modal-cinematic-appear,
+.animate-letter-content-reveal {
+  transition: none;
 }
